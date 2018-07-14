@@ -35,7 +35,7 @@ The car's state is modelled as a Kinematic model defined as below:
 3. psi[t+1] = psi[t] + v[t] / Lf * delta[t] * dt
 4. v[t+1] = v[t] + a[t] * dt
 5. cte[t+1] = f(x[t]) - y[t] + v[t] * sin(epsi[t]) * dt
-6 epsi[t+1] = psi[t+1] - psides[t] + v[t] * delta[t] / Lf * dt
+6. epsi[t+1] = psi[t+1] - psides[t] + v[t] * delta[t] / Lf * dt
 
 Where:
 
@@ -69,7 +69,7 @@ the edges, and discourage random changes.
 
 ## Timestep Length and Elapsed Duration (N & dt)
 
-The number of points(N) and the time interval(dt) define the prediction horizon. 
+The number of points (N) and the time interval (dt) define the prediction horizon. 
 The number of points impacts the controller performance. I chose the N and dt to keep the horizon
 aligned with the waypoints particularly on the turns, thus keeping the horizon small but big enough to
 smoothen the optimizer. I found N = 20 and dt = 0.05 seconds to work  for me.
@@ -83,10 +83,10 @@ The provided waypoints are transformed to the car coordinate system
 4. Eigen::VectorXd waypoints_xs(numWaypoints);
 5. Eigen::VectorXd waypoints_ys(numWaypoints);
 6. Looping over numWaypoints as {
-a.	double dx = points_xs[i] - px;
-b.	double dy = points_ys[i] - py;
-c.	waypoints_xs[i] = dx * cos(-psi) - dy * sin(-psi);
-d.	waypoints_ys[i] = dy * cos(-psi) + dx * sin(-psi);
+(a)	double dx = points_xs[i] - px;
+(b)	double dy = points_ys[i] - py;
+(c)	waypoints_xs[i] = dx * cos(-psi) - dy * sin(-psi);
+(d)	waypoints_ys[i] = dy * cos(-psi) + dx * sin(-psi);
 }
 
 
@@ -111,12 +111,12 @@ v*=0.44704;
 
 2. Second, the state for dt = latency = 0.1sec are predicted as
 
-1. psi = delta; 
-2. px = px + v*cos(psi)*latency; 
-3. py = py + v*sin(psi)*latency;
-4. cte= cte + v*sin(epsi)*latency;
-5. epsi = epsi + v*delta*latency/Lf;
-6. psi = psi + v*delta*latency/Lf;
-7. v = v + a*latency;
+(a) psi = delta; 
+(b) px = px + v*cos(psi)*latency; 
+(c) py = py + v*sin(psi)*latency;
+(d) cte= cte + v*sin(epsi)*latency;
+(e) epsi = epsi + v*delta*latency/Lf;
+(f) psi = psi + v*delta*latency/Lf;
+(g) v = v + a*latency;
 
 
