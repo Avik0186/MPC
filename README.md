@@ -112,11 +112,11 @@ v*=0.44704;
 2. Second, the state for dt = latency = 0.1sec are predicted as
 
 (a) psi = delta; 
-(b) px = px + v*cos(psi)*latency; 
-(c) py = py + v*sin(psi)*latency;
-(d) cte= cte + v*sin(epsi)*latency;
-(e) epsi = epsi + v*delta*latency/Lf;
-(f) psi = psi + v*delta*latency/Lf;
-(g) v = v + a*latency;
+(b) px = px + v * cos(psi) * latency; 
+(c) py = py + v * sin(psi) * latency;
+(d) cte= cte + v * sin(epsi) * latency;
+(e) epsi = epsi + v * delta * latency/Lf;
+(f) psi = psi + v * delta * latency/Lf;
+(g) v = v + a * latency;
 
 
